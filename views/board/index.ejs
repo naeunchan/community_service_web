@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <head lang="ko">
+  </head>
+  <body>
+    <h1>게시판</h1>
+    <table class="table table-hover"> 
+      <thead>
+        <tr class="table-info">
+          <th scope="col">제목</th>
+          <th scope="col">작성자</th>
+          <th scope="col">포스팅 날짜</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% posts.forEach(function(post) { %>
+            <tr>
+                <td>
+                    <a href="/board/<%= post._id %>">
+                        <div><%= post.title %></div>
+                    </a>
+                </td>
+                <td>
+                  <div><%= post.author ? post.author.name : "" %></div>
+                </td>
+                <td>
+                    <span><%= post.createdAt.toISOString().replace(/T/, " ").replace(/\..+/, "") %></span>
+                </td>
+            </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <form action="/board" method="GET">
+      <fieldset class="form-group" style="margin-top: 5px">
+        <div style="display: flex;">
+          <select name="searchType" class="form-control" style="width: 110px;">
+            <option value="name" <%= searchType=='name'?'selected':'' %>>작성자</option>
+            <option value="content" <%= searchType=='content'?'selected':'' %>>본문</option>
+            <option value="hashtag" <%= searchType=='hashtag'?'selected':'' %>>태그</option>
+          </select>
+          <input minLength="2" type="text" name="searchText" value="<%= searchText %>">
+          <button type="submit" class="btn btn-info">검색</button>
+        </div>
+      </fieldset>
+    </form>
+    <a href="/about" class="btn btn-primary">뒤로가기</a>
+    <a href="/board/new" class="btn btn-primary">글쓰기</a>
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+  </body>
+
+  <script type="text/javascript">
+    function btnClick(){
+      let checked = document.getElementsByName("optRadios")
+      for(let i = 0; i < checked.length; i++){
+        if(checked[i].checked == true){
+        alert(checked[i].value);
+        }
+      }
+    }
+  </script>
+</html>

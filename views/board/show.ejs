@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div>
+      <h2><%= post.title %></h2>
+      <div>
+        <div style="float: right">작성자 : <%= post.author.name %></div>
+        <label for="content">본문</label>
+        <textarea id="content" name="content" class="form-control" readonly>
+<%= post.content %></textarea
+        >
+      </div>
+      <div>
+        <% for(let i = 0; i < 3; i++) { %> <% if(post.hashtag[i] != "") { %>
+        <span>#</span>
+        <div style="display: inline-block"><%= post.hashtag[i] %></div>
+        <% } %> <% } %>
+      </div>
+      <div>
+        <p>
+          포스팅 날짜 : <%= post.createdAt.toISOString().replace(/T/, " ").replace(/\..+/, "") %>
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 5px">
+      <a href="/board" class="btn btn-primary">뒤로가기</a>
+      <% if(post.author.id == userID) { %>
+      <a href="/board/<%= post._id %>/edit" class="btn btn-primary" style="float: right">수정</a>
+      <form action="/board/<%= post._id %>?_method=delete" method="post" class="d-inline">
+        <a
+          class="btn btn-secondary"
+          href="javascript:void(0)"
+          onclick="confirm('게시글을 삭제하시겠습니까?') ? this.parentElement.submit():null;"
+          style="float: right; margin-right: 5px"
+          >삭제
+        </a>
+        <% } %>
+      </form>
+    </div>
+  </body>
+</html>

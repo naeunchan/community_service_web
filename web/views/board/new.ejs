@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <form action="/board" method="post">
+        <div>
+          <label for="title">제목</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= post.title %>"
+            class="form-control"
+          />
+        </div>
+        <div>
+          <label for="body">본문</label>
+          <textarea id="content" name="content" rows="5" class="form-control">
+<%= post.content %></textarea
+          >
+          <label for="hashtag">해시태그</label>
+          <textarea id="hashtag" name="hashtag" rows="1" class="form-control"></textarea>
+        </div>
+        <div style="margin-top: 5px">
+          <a href="/board" class="btn btn-primary">뒤로가기</a>
+          <button type="submit" class="btn btn-primary" style="float: right">글쓰기</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

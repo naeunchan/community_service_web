@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <div class="container mb-3">
+      <form
+        action="/gallery/<%= gallery._id %>?_method=put"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= gallery.title %>"
+            class="form-control"
+          />
+        </div>
+        <div>
+          <label for="body">Body</label>
+          <textarea id="content" name="content" rows="5" class="form-control">
+<%= gallery.content %></textarea
+          >
+        </div>
+        <div>
+          <input type="file" id="img" name="img" accept="image/*" />
+        </div>
+        <div>
+          <label for="hashtag">해시태그</label>
+          <textarea id="hashtag" name="hashtag" class="form-control">
+<%= gallery.hashtag %></textarea
+          >
+        </div>
+        <div style="margin-top: 5px">
+          <a class="btn btn-primary" href="/gallery/<%= gallery._id %>">뒤로가기</a>
+          <button type="submit" class="btn btn-primary" style="float: right">수정</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

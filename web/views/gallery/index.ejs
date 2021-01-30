@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+  <head lang="ko">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>갤러리</h1>
+    <form action="/gallery" method="GET">
+      <fieldset class="form-group" style="margin-top: 5px">
+        <div style="display: flex;">
+          <select name="searchType" class="form-control" style="width: 110px;">
+            <option value="name" <%= searchType=='name'?'selected':'' %>>작성자</option>
+            <option value="content" <%= searchType=='content'?'selected':'' %>>본문</option>
+            <option value="hashtag" <%= searchType=='hashtag'?'selected':'' %>>태그</option>
+          </select>
+          <input minLength="2" type="text" name="searchText" value="<%= searchText %>">
+          <button type="submit" class="btn btn-info">검색</button>
+        </div>
+      </fieldset>
+    </form>
+    <a href="/about" class="btn btn-primary">뒤로가기</a>
+    <a href="/gallery/new" class="btn btn-primary">사진 올리기</a>
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+    <div>
+        <% galleries.forEach(function(gallery) { %>
+            <div>
+              <a href="/gallery/<%= gallery._id %>">
+                <div><%= gallery.title %></div>
+              </a>
+                <% if(gallery.img) { %>  
+                  <img src="<%= gallery.img %>" alt="썸네일" width="250">
+                <% } %>
+                <% if(gallery.hashtag) { %>
+                  <p><%= gallery.hashtag %></p>
+                <% } %>
+            </div>
+        <% }) %>
+    </div>
+  </body>
+</html>

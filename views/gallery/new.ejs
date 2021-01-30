@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <form action="/gallery" method="post" enctype="multipart/form-data">
+        <div>
+          <label for="title">제목</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= gallery.title %>"
+            class="form-control"
+          />
+        </div>
+        </div>
+        <div>
+          <label for="body">본문</label>
+          <textarea id="content" name="content" rows="5" class="form-control">
+<%= gallery.content %></textarea
+          >
+          <div>
+          <div>
+            <input
+              type="file"
+              id="img"
+              name="img"
+              accept="image/*"
+              style="margin-top: 5px; margin-bottom: 5px"
+            />
+          </div><div>
+            <span>#</span>
+            <div style="display: inline-block">
+              <input
+                type="text"
+                name="hashtag"
+                id="hashtag"
+                placeholder="태그입력"
+                class="form-control"
+              />
+            </div>
+            <span>#</span>
+            <div style="display: inline-block">
+              <input
+                type="text"
+                name="hashtag"
+                id="hashtag"
+                placeholder="태그입력"
+                class="form-control"
+              />
+            </div>
+            <span>#</span>
+            <div style="display: inline-block">
+              <input
+                type="text"
+                name="hashtag"
+                id="hashtag"
+                placeholder="태그입력"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 5px">
+          <a href="/gallery" class="btn btn-primary">뒤로가기</a>
+          <button type="submit" class="btn btn-primary" style="float: right">업로드</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

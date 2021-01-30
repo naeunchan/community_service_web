@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div>
+      <h2><%= gallery.title %></h2>
+      <div>
+        <div style="float: right">작성자 : <%= gallery.author ? gallery.author.name : "" %></div>
+        <label for="content">본문</label>
+        <textarea id="content" name="content" class="form-control" readonly>
+<%= gallery.content %></textarea
+        >
+        <img
+          id="img"
+          src="<%= gallery.img %>"
+          alt="이미지"
+          width="250"
+          style="margin: 5px 0px 5px 0px"
+        />
+      </div>
+      <div>
+        <label for="hashtag">해시태그</label>
+        <div id="hashtag" name="hashtag" class="form-control"><%= gallery.hashtag %></div>
+      </div>
+      <div>
+        <span> 포스팅 날짜 : <%= gallery.createdAt %> </span>
+      </div>
+    </div>
+
+    <div style="margin-top: 5px">
+      <a href="/gallery" class="btn btn-primary">뒤로가기</a>
+      <% if(gallery.author.id == userID) {%>
+      <a href="/gallery/<%= gallery._id %>/edit" class="btn btn-primary" style="float: right"
+        >수정</a
+      >
+      <form action="/gallery/<%= gallery._id %>?_method=delete" method="post" class="d-inline">
+        <a
+          class="btn btn-secondary"
+          href="javascript:void(0)"
+          onclick="confirm('게시글을 삭제하시겠습니까?') ? this.parentElement.submit():null;"
+          style="float: right; margin-right: 5px"
+          >삭제
+        </a>
+      </form>
+      <% } %>
+    </div>
+  </body>
+</html>
